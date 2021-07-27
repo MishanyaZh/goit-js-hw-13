@@ -13,3 +13,33 @@
 .is-hidden {
   display: none;
 }
+
+.gallery {
+  margin-bottom: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.photo-card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 320px;
+  height: 320px;
+  margin-bottom: 20px;
+}
+
+.photo-card-img {
+  width: 320px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
