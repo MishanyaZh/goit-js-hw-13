@@ -1,0 +1,1 @@
+{"version":3,"sources":["sass/_example.scss"],"names":[],"mappings":"AAAA,aACE,eAAA,CACA,iBAAA,CACA,YAAA,CACA,uBAGF,WACE,YAAA,CACA","file":"src.13b1858f.css","sourceRoot":"../src","sourcesContent":[".search-form {\n  margin-top: 15px;\n  margin-bottom: 5px;\n  display: flex;\n  justify-content: center;\n}\n\n.load-more {\n  display: flex;\n  margin: 0 auto;\n}\n"]}
