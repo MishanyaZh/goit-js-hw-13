@@ -5,7 +5,11 @@
   justify-content: center;
 }
 
-.load-more {
+.load-more-container {
   display: flex;
-  margin: 0 auto;
+  justify-content: center;
+}
+
+.is-hidden {
+  display: none;
 }

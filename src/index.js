@@ -1,11 +1,72 @@
 import './sass/main.scss';
-console.log('hw-13');
+// console.log('hw-13');
 
-
+import fetchImageApi from './js/fetch-Image-Api';
+import photoCardTpl from './temlates/photo-card';
+import Notiflix from 'notiflix';
 
 const searchForm = document.querySelector('.search-form');
-console.log(searchForm);
 const galleryContainer = document.querySelector('.gallery');
-console.log(galleryContainer);
 const loadMoreBtn = document.querySelector('.load-more');
-console.log(loadMoreBtn);
+
+
+searchForm.addEventListener('submit', onSearchForm);
+loadMoreBtn.addEventListener('click', onLoadMoreBtn);
+
+
+const newFetchImageApi = new fetchImageApi();
+
+async function onSearchForm(evt) {
+    evt.preventDefault();
+    
+    newFetchImageApi.query = evt.currentTarget.elements.searchQuery.value;
+
+    if (newFetchImageApi.query === '') {
+        return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+    }
+
+    newFetchImageApi.resetPage();
+
+    const response = await newFetchImageApi.fetchImages();
+    clearGalleryContainer();
+    return photoCardMarkup(response);
+}
+
+
+async function onLoadMoreBtn() {
+    const response = await newFetchImageApi.fetchImages();
+    return photoCardMarkup(response);
+}
+
+
+function photoCardMarkup(images) {
+    galleryContainer.insertAdjacentHTML('beforeend', photoCardTpl(images))
+    // loadMoreBtn.classList.remove('is-hidden');
+    isHiddenFalse();
+    // isHiddenTrue();
+
+    if (images.length === 0) {
+        isHiddenTrue();
+        // loadMoreBtn.classList.add('is-hidden')
+        return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+    }
+
+    if (images.length < 40) {
+        isHiddenTrue();
+        // loadMoreBtn.classList.add('is-hidden')
+        Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
+    }
+}
+
+
+function clearGalleryContainer() {
+    galleryContainer.innerHTML = '';
+}
+
+function isHiddenFalse() {
+    loadMoreBtn.classList.remove('is-hidden')
+}
+
+function isHiddenTrue() {
+    loadMoreBtn.classList.add('is-hidden')
+}

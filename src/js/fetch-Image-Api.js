@@ -4,7 +4,7 @@ const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '22670626-c734a5ab3fb2edefe4011dc83';
 
 // fetchImageApi
-export default class ImageService {
+export default class fetchImageApi {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
