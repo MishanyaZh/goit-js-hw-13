@@ -12,6 +12,7 @@ body {
 .load-more-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
 }
 
 .is-hidden {
@@ -19,7 +20,7 @@ body {
 }
 
 .gallery {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;

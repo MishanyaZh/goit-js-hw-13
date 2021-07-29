@@ -18,7 +18,7 @@ const newFetchImageApi = new fetchImageApi();
 
 async function onSearchForm(evt) {
     evt.preventDefault();
-    
+    isHiddenFalse();
     newFetchImageApi.query = evt.currentTarget.elements.searchQuery.value;
 
     if (newFetchImageApi.query === '') {
@@ -34,12 +34,14 @@ async function onSearchForm(evt) {
 
 
 async function onLoadMoreBtn() {
+    isHiddenTrue();
     const response = await newFetchImageApi.fetchImages();
-    return photoCardMarkup(response);
+    return photoCardMarkup(response); 
 }
 
 
 function photoCardMarkup(images) {
+
     galleryContainer.insertAdjacentHTML('beforeend', photoCardTpl(images))
     // loadMoreBtn.classList.remove('is-hidden');
     isHiddenFalse();
