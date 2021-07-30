@@ -29,7 +29,7 @@ async function onSearchForm(evt) {
 
     const response = await newFetchImageApi.fetchImages();
     clearGalleryContainer();
-    return photoCardMarkup(response);
+    return await photoCardMarkup(response);
 }
 
 
@@ -41,21 +41,17 @@ async function onLoadMoreBtn() {
 
 
 function photoCardMarkup(images) {
-
+    
     galleryContainer.insertAdjacentHTML('beforeend', photoCardTpl(images))
-    // loadMoreBtn.classList.remove('is-hidden');
     isHiddenFalse();
-    // isHiddenTrue();
 
     if (images.length === 0) {
         isHiddenTrue();
-        // loadMoreBtn.classList.add('is-hidden')
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
 
     if (images.length < 40) {
         isHiddenTrue();
-        // loadMoreBtn.classList.add('is-hidden')
         Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
     }
 }
