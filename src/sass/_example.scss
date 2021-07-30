@@ -1,5 +1,5 @@
 body {
-  background: cornsilk;
+  background: rgb(78, 238, 46);
 }
 
 .search-form {
@@ -54,4 +54,31 @@ body {
   margin-right: 15px;
   border-radius: 5px;
   height: 35px;
+}
+
+.btn-search {
+  background-color: rgb(144, 145, 155);
+  border: 2px solid red;
+  border-radius: 5px;
+  color: rgb(255, 30, 0);
+}
+
+.btn-search:hover {
+  color: black;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.load-more {
+  height: 40px;
+  background-color: rgb(144, 145, 155);
+  border: 2px solid red;
+  border-radius: 5px;
+  color: rgb(255, 30, 0);
+}
+
+.load-more:hover {
+  color: black;
+  background-color: #fff;
+  font-weight: 500;
 }
