@@ -9,16 +9,16 @@ const searchForm = document.querySelector('.search-form');
 const galleryContainer = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
-
 searchForm.addEventListener('submit', onSearchForm);
 loadMoreBtn.addEventListener('click', onLoadMoreBtn);
-
 
 const newFetchImageApi = new fetchImageApi();
 
 async function onSearchForm(evt) {
     evt.preventDefault();
-    isHiddenFalse();
+
+    isHiddenTrue();
+   
     newFetchImageApi.query = evt.currentTarget.elements.searchQuery.value;
 
     if (newFetchImageApi.query === '') {
@@ -26,15 +26,14 @@ async function onSearchForm(evt) {
     }
 
     newFetchImageApi.resetPage();
+    clearGalleryContainer();
 
     const response = await newFetchImageApi.fetchImages();
-    clearGalleryContainer();
-    return await photoCardMarkup(response);
+    return photoCardMarkup(response);
 }
 
 
 async function onLoadMoreBtn() {
-    isHiddenTrue();
     const response = await newFetchImageApi.fetchImages();
     return photoCardMarkup(response); 
 }
@@ -43,6 +42,7 @@ async function onLoadMoreBtn() {
 function photoCardMarkup(images) {
     
     galleryContainer.insertAdjacentHTML('beforeend', photoCardTpl(images))
+    
     isHiddenFalse();
 
     if (images.length === 0) {
