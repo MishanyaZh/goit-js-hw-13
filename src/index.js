@@ -1,5 +1,4 @@
 import './sass/main.scss';
-// console.log('hw-13');
 
 import fetchImageApi from './js/fetch-Image-Api';
 import photoCardTpl from './temlates/photo-card';
@@ -17,7 +16,7 @@ const newFetchImageApi = new fetchImageApi();
 async function onSearchForm(evt) {
     evt.preventDefault();
 
-    isHiddenTrue();
+    hiddenLoadMoreBtn();
    
     newFetchImageApi.query = evt.currentTarget.elements.searchQuery.value;
 
@@ -32,39 +31,36 @@ async function onSearchForm(evt) {
     return photoCardMarkup(response);
 }
 
-
 async function onLoadMoreBtn() {
     const response = await newFetchImageApi.fetchImages();
     return photoCardMarkup(response); 
 }
 
-
 function photoCardMarkup(images) {
     
     galleryContainer.insertAdjacentHTML('beforeend', photoCardTpl(images))
-    
-    isHiddenFalse();
+
+    showLoadMoreBtn();
 
     if (images.length === 0) {
-        isHiddenTrue();
+        hiddenLoadMoreBtn();
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
 
     if (images.length < 40) {
-        isHiddenTrue();
+        hiddenLoadMoreBtn();
         Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
     }
 }
-
 
 function clearGalleryContainer() {
     galleryContainer.innerHTML = '';
 }
 
-function isHiddenFalse() {
+function showLoadMoreBtn() {
     loadMoreBtn.classList.remove('is-hidden')
 }
 
-function isHiddenTrue() {
+function hiddenLoadMoreBtn() {
     loadMoreBtn.classList.add('is-hidden')
 }
